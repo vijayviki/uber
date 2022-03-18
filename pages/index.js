@@ -1,34 +1,65 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import tw from "tailwind-styled-components"
-import mapboxgl from '!mapbox-gl'
-import { useEffect } from 'react'
-
-mapboxgl.accessToken =
-  "pk.eyJ1Ijoic2FpdmlrYXMiLCJhIjoiY2wwdzNnZ2ltMWRkbzNicGt2dGxvN3VrZyJ9.E0bG3xyHTREs4btixglMkQ";
+import Map from "./components/map";
+import tw from "tailwind-styled-components";
+import Link from "next/link";
 
 export default function Home() {
-  useEffect(()=>{
-   const map = new mapboxgl.Map({
-     container: "map",
-     styles: "mapbox://styles/branaust/ckah0ufz017b71jrsp5pm2w0d",
-     center:[77.2759,15.7642],
-     zoom:18,
-   })
-
-  },[])
-
+  
   return (
     <Wrapper>
-    <Map id="map"></Map>
-    <ActionItems></ActionItems>
+      <Map/>
+      <ActionItems>
+        <Header>
+           <UberLogo src="https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg"/>
+           <Profile>
+           <UserName>vijay</UserName>
+           <UserLogo src="assets/vijay.jpeg"/>
+           </Profile>
+        </Header>
+      <ActionButtons>
+        <Link href="/search">
+        <ActionButton>
+          <ActionButtonImage src="https://i.ibb.co/YDYMKny/uberxl.png"/>
+             Ride
+          </ActionButton>
+          </Link>
+          <ActionButton>
+          <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png"/>
+            2-Wheeler 
+          </ActionButton>  
+        <ActionButton>
+          <ActionButtonImage src="https://i.ibb.co/5RjchBg/uberschedule.png"/>
+           Reserve
+        </ActionButton>
+    </ActionButtons>
+    <InputButton>Where to ?</InputButton>
+      </ActionItems>
     </Wrapper>
   );
 }
 
-const Wrapper=tw.div`flex flex-col bg-red-300 h-screen`
+const Wrapper = tw.div`
+flex flex-col h-screen
+`;
 
-const Map=tw.div`bg-red-500 flex-1`
+const ActionItems = tw.div`
+flex-1 m-4
+`;
 
-const ActionItems=tw.div`flex-1`
+const Header = tw.div`flex justify-between mb-3`
+
+const UberLogo =tw.img` h-30 object-fit w-40 p-px w-[11rem] transform hover:scale-105`
+
+const Profile =tw.div`flex items-center`
+
+const UserName= tw.div` w-17 text-xl`
+
+const UserLogo= tw.img`border-gray-200 rounded-full w-30 h-20 p-px`
+
+const ActionButtons= tw.div`flex`
+
+const ActionButton= tw.div` bg-gray-200 m-1 h-32 flex flex-1 items-center flex-col justify-center rounded-lg transform hover:scale-105 cursor-pointer transition text-xl`
+
+const ActionButtonImage= tw.img`
+h-3/5`
+
+const InputButton=tw.div`h-20 bg-gray-200 text-2xl flex items-center p-4 mt-8`;
