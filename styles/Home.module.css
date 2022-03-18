@@ -2,6 +2,13 @@
   padding: 0 2rem;
 }
 
+.start {
+  background-color: red;
+}
+.map {
+  background-color: blue;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
